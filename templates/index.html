@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Rock, Paper, Scissors</title>
+  </head>
+  <body>
+    <p>Win: {{session["win"]}}</p>
+    <p>Losses: {{session["loss"]}}</p>
+    <p>Ties: {{session["tie"]}}</p>
+
+    <h1>Rock Paper Scissors</h1>
+    {%if session["outcome"] == "win":%}
+    <p>The opponent picked {{session["opponentOut"]}} and you picked {{session["playerHand"]}}, you win!</p>
+    {%elif session["outcome"] == "tie":%}
+    <p>The opponent picked {{session["opponentOut"]}} and you picked {{session["playerHand"]}}, you tie!</p>
+    {%elif session["outcome"] == "loss"%}
+    <p>The opponent picked {{session["opponentOut"]}} and you picked {{session["playerHand"]}}, you lose!</p>
+    {%endif%}
+
+    <div class="button">
+      <form class="formButton" action="/process_play" method="post">
+        <input type="hidden" name="hand" value="rock">
+        <input type="submit"  value="rock">
+      </form>
+      <form class="formButton" action="/process_play" method="post">
+        <input type="hidden" name="hand" value="paper">
+        <input type="submit"  value="paper">
+      </form>
+      <form class="formButton" action="/process_play" method="post">
+        <input type="hidden" name="hand" value="scissors">
+        <input type="submit"  value="scissors">
+      </form>
+    </div>
+    <form class="reset" action="/endGame" method="post">
+      <input type="submit"  value="Reset Score">
+    </form>
+  </body>
+</html>
